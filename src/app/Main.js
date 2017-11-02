@@ -9,9 +9,9 @@ import ConsoleExports from './utils/ConsoleExports';
 import {serverApiRecordEvent} from 'app/utils/ServerApiClient';
 import * as steem from 'steem';
 
-window.onerror = error => {
+window.addEventListener('error', error => {
     if (window.$STM_csrf) serverApiRecordEvent('client_error', error);
-};
+});
 
 const CMD_LOG_T = 'log-t'
 const CMD_LOG_TOGGLE = 'log-toggle'
