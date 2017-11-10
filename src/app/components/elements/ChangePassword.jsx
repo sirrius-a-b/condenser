@@ -73,7 +73,7 @@ class ChangePassword extends React.Component {
             if(onClose) onClose()
             if(resetForm) resetForm()
             notify('Password Updated')
-            window.location = `/login.html#account=${accountName}&msg=passwordupdated`;
+            window.location = pathTo.login() + `#account=${accountName}&msg=passwordupdated`;
         }
         const error = (e) => {
             this.setState({loading: false, error: e})
@@ -165,7 +165,7 @@ class ChangePassword extends React.Component {
                             </label>
                         </span>
                         ||
-                        <center><button type="button" className="button hollow" onClick={this.generateWif}>{tt('g.click_to_generate_password')}</button></center>
+                        <button type="button" className="button hollow" onClick={this.generateWif}>{tt('g.click_to_generate_password')}</button>
                     }
 
                     <br></br>
@@ -186,7 +186,7 @@ class ChangePassword extends React.Component {
                     {confirmSaved.touched && confirmSaved.error && <div className="error">{confirmSaved.error}</div>}
                     <br />
                     {loading && <div><LoadingIndicator type="circle" /></div>}
-                    {!loading && <div>
+                    {!loading && <div className="ChangePassword__btn-container">
                         <div className="error">{error2}</div>
                         <button type="submit" className="button" disabled={loading}>
                             {tt('g.update_password')}

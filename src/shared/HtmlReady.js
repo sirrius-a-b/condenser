@@ -1,6 +1,6 @@
 import xmldom from 'xmldom'
 import tt from 'counterpart'
-import linksRe from 'app/utils/Links'
+import linksRe, { any as linksAny } from 'app/utils/Links'
 import {validate_account_name} from 'app/utils/ChainValidation'
 import proxifyImageUrl from 'app/utils/ProxifyUrl'
 import {pathTo} from 'app/Routes'
@@ -240,12 +240,12 @@ function linkify(content, mutate, hashtags, usertags, images, links) {
         if(valid && usertags) usertags.add(userLower)
         if(!mutate) return user
         return space + (valid ?
-            `<a href="/${pathTo.userProfile(userLower)}">@${user2}</a>` :
+            `<a href="${pathTo.userProfile(userLower)}">@${user2}</a>` :
             '@' + user2
         )
     })
 
-    content = content.replace(linksRe.any, ln => {
+    content = content.replace(linksAny('gi'), ln => {
         if(linksRe.image.test(ln)) {
             if(images) images.add(ln)
             return `<img src="${ipfsPrefix(ln)}" />`
