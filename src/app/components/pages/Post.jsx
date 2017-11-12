@@ -29,7 +29,7 @@ class Post extends React.Component {
         super();
         this.state = {
             showNegativeComments: false,
-            commentLimit: 500,
+            commentLimit: process.env.BROWSER ? 500 : 5,
         };
         this.showSignUp = () => {
             serverApiRecordEvent('SignUp', 'Post Promo');
